@@ -1,0 +1,21 @@
+<section fxLayout="row"
+         fxLayoutAlign="space-between center"
+         class="p8 m4">
+    <h1 class="mat-title m4">{{name}}</h1>
+    <button mat-icon-button (click)="toggleExpanded()">
+        <mat-icon>
+            {{expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
+        </mat-icon>
+    </button>
+</section>
+<section *ngIf="expanded"
+         class="p8"
+         fxLayout="column"
+         fxLayoutAlign="start stretch">
+    <ng-template #loading>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-template>
+    <ng-container *ngIf="(result$ | async) as data else loading">
+        <pre class="scroll-pre" [style.max-height.px]="400"><code class="green">{{data | json}}</code></pre>
+    </ng-container>
+</section>
