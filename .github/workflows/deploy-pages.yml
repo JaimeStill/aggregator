@@ -3,6 +3,11 @@ name: Deploy Pages
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+        - .vscode/*
+        - .editorconfig
+        - .gitignore
+        - readme.md
 
 jobs:
   build:
