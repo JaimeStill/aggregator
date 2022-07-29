@@ -1,0 +1,33 @@
+<section fxLayout="column"
+         fxLayoutAlign="start stretch"
+         class="m4 rounded card-outline-accent">
+    <section fxLayout="row"
+             fxLayoutAlign="space-between center"
+             class="background-card rounded p8">
+        <h1 class="mat-title m4">{{name}}</h1>
+        <button mat-icon-button
+                (click)="toggleExpanded()">
+            <mat-icon>
+                {{expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
+            </mat-icon>
+        </button>
+    </section>
+    <section *ngIf="expanded"
+             class="p8 rounded"
+             fxLayout="column"
+             fxLayoutAlign="start stretch">
+        <ng-template #loading>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </ng-template>
+        <ng-container *ngIf="(result$ | async) as data else loading">
+            <section fxLayout="column"
+                     fxLayoutAlign="start stretch"
+                     *ngIf="data.results?.length > 0">
+                <ng-container *ngFor="let r of data.results">
+                    <pre class="scroll-pre"
+                         [style.max-height.px]="400"><code class="green">{{r | json}}</code></pre>
+                </ng-container>
+            </section>
+        </ng-container>
+    </section>
+</section>

@@ -1,0 +1,17 @@
+<section fxLayout="column"
+         fxLayoutAlign="start stretch"
+         [class]="cardStyle">
+    <section fxLayout="row"
+             fxLayoutAlign="space-between center"
+             class="background-card p2 cursor-pointer"
+             (click)="toggle()">
+        <h1 class="mat-title m4">{{heading}}</h1>
+        <mat-icon class="m4">{{expanded ? collapseIcon : expandIcon}}</mat-icon>
+    </section>
+    <section *ngIf="expanded"
+             class="p2"
+             fxLayout="column"
+             fxLayoutAlign="start stretch">
+        <ng-content></ng-content>
+    </section>
+</section>

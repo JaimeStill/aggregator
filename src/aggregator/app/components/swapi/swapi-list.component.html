@@ -1,0 +1,22 @@
+<ng-container *ngIf="result?.count > 0">
+    <section fxLayout="row"
+             fxLayoutAlign="space-between center">
+        <button mat-button
+                [disabled]="!result.previous"
+                (click)="previous.emit(result.previous)">Previous</button>
+        <button mat-button
+                [disabled]="!result.next"
+                (click)="next.emit(result.next)">Next</button>
+    </section>
+    <section *ngFor="let item of result.results"
+             class="m4 p4 background-card rounded card-outline-accent"
+             fxLayout="row"
+             fxLayoutAlign="space-between center">
+        <p class="mat-body-strong m4">{{render(item)}}</p>
+        <button mat-button
+                color="primary"
+                (click)="action.emit(item)">Select</button>
+    </section>
+</ng-container>
+<p *ngIf="!(result?.count > 0)"
+   class="mat-subheading-1 m4">No Results Available</p>

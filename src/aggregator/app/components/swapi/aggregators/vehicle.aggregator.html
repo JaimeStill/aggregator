@@ -1,0 +1,12 @@
+<expansion-card heading="Vehicles">
+    <ng-template #loading>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-template>
+    <ng-container *ngIf="query.result$ | async as result else loading">
+        <swapi-list [result]="result"
+                    [render]="render"
+                    (previous)="setEndpoint($event)"
+                    (next)="setEndpoint($event)"
+                    (action)="action.emit($event)"></swapi-list>
+    </ng-container>
+</expansion-card>
